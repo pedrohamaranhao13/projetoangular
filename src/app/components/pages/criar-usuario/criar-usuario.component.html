@@ -7,29 +7,72 @@
                     <p>Entre com seus dados para criar uma conta.</p>
                 </div>
 
-                <form action="">
+                <div class="m-2 text-success text-center" *ngIf="mensagemSucesso">
+                    <Strong>{{mensagemSucesso}}</Strong>
+                </div>
+                <div class="m-2 text-danger text-center" *ngIf="mensagemErro">
+                    <strong>{{mensagemErro}}</strong>
+                </div>
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="mb-3">
                         <label for="">Nome do usuário:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" formControlName="nome">
+                        <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+                            <div *ngIf="f['nome'].errors['required']">
+                                Por favor, informe seu nome.
+                            </div>
+                            <div *ngIf="f['nome'].errors['minlength']">
+                                Por favor, informe o nome com pelo menos 8 caracteres.
+                            </div>
+                            <div *ngIf="f['nome'].errors['maxlength']">
+                                Por favor, informe o nome com no máximo 100 caracteres.
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="">E-mail de acesso:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" formControlName="email">
+                        <div class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+                            <div *ngIf="f['email'].errors['required']">
+                                Por favor, informe seu e-mail;
+                            </div>
+                            <div *ngIf="f['email'].errors['email']">
+                                Por favor, informe um endereço de e-mail válido;
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="">Senha de acesso:</label>
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" formControlName="senha">
+                        <div class="text-danger" *ngIf="f['senha'].touched && f['senha'].invalid">
+                            <div *ngIf="f['senha'].errors['required']">
+                                Por favor, informe a senha.
+                            </div>
+                            <div *ngIf="f['senha'].errors['pattern']">
+                                A senha deve ter letra maiúscula, minúscula, número, caracter especial
+                                e pelo menos 8 caracteres.
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="">Confirme sua senha:</label>
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" formControlName="senhaConfirmacao">
+                        <div class="text-danger" *ngIf="f['senhaConfirmacao'].touched && f['senhaConfirmacao'].invalid">
+                            <div *ngIf="f['senhaConfirmacao'].errors['required']">
+                                Por favor, confirme sua senha.
+                            </div>
+                            <div *ngIf="f['senhaConfirmacao'].errors['matchPassword']">
+                                Senhas não conferem, por favor verifique.
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb-3 d-grid">
-                        <button class="btn btn-primary btn-sm">
+                        <button class="btn btn-primary btn-sm" [disabled]="form.invalid">
                             Realizar cadastro
                         </button>
                     </div>
