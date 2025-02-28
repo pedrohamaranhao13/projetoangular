@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PasswordMatchValidation } from '../../../validations/password-match.validation';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-criar-usuario',
@@ -53,7 +54,7 @@ export class CriarUsuarioComponent {
     this.mensagemSucesso = '';
     this.mensagemErro = '';
 
-    this.httpClient.post('http://localhost:8082/api/usuario/criar', this.form.value)
+    this.httpClient.post(environment.apiUsuarios + '/criar', this.form.value)
       .subscribe({
         next: (data: any) => {
           this.mensagemSucesso = `Parabéns ${data.nome}, seu cadastro foi realizado com sucesso. `

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LogoComponent } from './components/layout/logo/logo.component';
 import { CriarUsuarioComponent } from './components/pages/criar-usuario/criar-usuario.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { ConsultaProdutosComponent } from './components/pages/consulta-produtos/consulta-produtos.component';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,10 @@ export const routes: Routes = [
     {
         path: "app/index",
         component: LogoComponent
+    },
+    {
+        path: "app/consulta-produtos",
+        component: ConsultaProdutosComponent
     },
     {
         path: '',
