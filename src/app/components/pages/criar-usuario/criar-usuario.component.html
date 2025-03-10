@@ -46,7 +46,14 @@
 
                     <div class="mb-3">
                         <label for="">Senha de acesso:</label>
-                        <input type="password" class="form-control" formControlName="senha">
+                        <div class="input-group">
+                            <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+                                formControlName="senha">
+                            <button type="button" class="btn btn-outline-secondary"
+                                (click)="togglePasswordVisibility()">
+                                <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash': showPassword}"></i>
+                            </button>
+                        </div>
                         <div class="text-danger" *ngIf="f['senha'].touched && f['senha'].invalid">
                             <div *ngIf="f['senha'].errors['required']">
                                 Por favor, informe a senha.
@@ -60,7 +67,14 @@
 
                     <div class="mb-3">
                         <label for="">Confirme sua senha:</label>
-                        <input type="password" class="form-control" formControlName="senhaConfirmacao">
+                        <div class="input-group">
+                            <input [type]="showpasswordCofirm ? 'text' : 'password'" class="form-control"
+                                formControlName="senhaConfirmacao">
+                            <button type="button" class="btn btn-outline-secondary"
+                                (click)="togglePasswordVisibilityConfirm()">
+                                <i class="bi" [ngClass]="{'bi-eye': !showPassword, 'bi-eye-slash': showPassword}"></i>
+                            </button>
+                        </div>
                         <div class="text-danger" *ngIf="f['senhaConfirmacao'].touched && f['senhaConfirmacao'].invalid">
                             <div *ngIf="f['senhaConfirmacao'].errors['required']">
                                 Por favor, confirme sua senha.
@@ -81,3 +95,5 @@
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">

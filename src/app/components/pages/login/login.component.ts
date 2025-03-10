@@ -50,4 +50,11 @@ export class LoginComponent {
         }
       })
   }
+
+  showPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
 }

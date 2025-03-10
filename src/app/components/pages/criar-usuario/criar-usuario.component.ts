@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PasswordMatchValidation } from '../../../validations/password-match.validation';
 import { environment } from '../../../../environments/environment';
+import { PasswordMatchValidation } from '../../../validations/password-match.validation';
 
 @Component({
   selector: 'app-criar-usuario',
@@ -68,4 +68,15 @@ export class CriarUsuarioComponent {
 
   }
 
+  showPassword: boolean = false;
+  showpasswordCofirm: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+  
+  togglePasswordVisibilityConfirm() {
+    this.showpasswordCofirm = !this.showpasswordCofirm;
+  }
+  
 }
